@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://x4h8uf0r1sq0"]
+
+[ext_resource type="ArrayMesh" uid="uid://dporwx1u861f7" path="res://Balloon Popper/Balloon.obj" id="1_4t30t"]
+
+[node name="Main" type="Node3D"]
+
+[node name="Balloon" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0329324, 0, 0.0969677)
+mesh = ExtResource("1_4t30t")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0329324, 0, 1.5982262)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.71541226, 0.6987026, 0, -0.6987026, -0.71541226, 4.0284357, 5.2217455, 0)
