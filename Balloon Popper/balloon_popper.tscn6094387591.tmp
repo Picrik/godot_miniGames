@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://x4h8uf0r1sq0"]
+
+[ext_resource type="ArrayMesh" uid="uid://dporwx1u861f7" path="res://Balloon Popper/Balloon.obj" id="1_4t30t"]
+[ext_resource type="Script" uid="uid://dppofigf66lgk" path="res://Balloon Popper/balloon.gd" id="1_6jol5"]
+[ext_resource type="Material" uid="uid://87jaxn4o0mpg" path="res://Balloon Popper/balloon_red.tres" id="1_bxkad"]
+[ext_resource type="Script" uid="uid://c3vkkfe8l14tu" path="res://Balloon Popper/balloon_manager.gd" id="1_hm4d0"]
+
+[sub_resource type="Environment" id="Environment_4t30t"]
+background_mode = 1
+background_color = Color(0.2628886, 0.6620919, 0.99999994, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_bxkad"]
+radius = 0.5753273
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_hm4d0")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0329324, 0, 1.5982262)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.020645428, -0.8394896, -0.5429835, 0.26093632, -0.5288003, 0.8076401, -0.96513516, -0.12501004, 0.22997066, -1.2922394, 5.121672, -1.8986057)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_4t30t")
+
+[node name="balloon" type="Area3D" parent="."]
+script = ExtResource("1_6jol5")
+
+[node name="model" type="MeshInstance3D" parent="balloon"]
+material_override = ExtResource("1_bxkad")
+mesh = ExtResource("1_4t30t")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="balloon"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.08544105, 0)
+shape = SubResource("SphereShape3D_bxkad")
+
+[connection signal="input_event" from="balloon" to="balloon" method="_on_input_event"]

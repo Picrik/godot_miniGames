@@ -1,15 +1,57 @@
-[gd_scene load_steps=2 format=3 uid="uid://x4h8uf0r1sq0"]
+[gd_scene load_steps=7 format=3 uid="uid://x4h8uf0r1sq0"]
 
-[ext_resource type="ArrayMesh" uid="uid://dporwx1u861f7" path="res://Balloon Popper/Balloon.obj" id="1_4t30t"]
+[ext_resource type="Script" uid="uid://c3vkkfe8l14tu" path="res://Balloon Popper/balloon_manager.gd" id="1_hm4d0"]
+[ext_resource type="Script" uid="uid://cjr1t075cuvsy" path="res://Balloon Popper/camera_3d.gd" id="2_6jol5"]
+[ext_resource type="PackedScene" uid="uid://csafnr7pknh07" path="res://Balloon Popper/balloon.tscn" id="2_bxkad"]
+[ext_resource type="PackedScene" uid="uid://cxra4noymjdql" path="res://Balloon Popper/balloon_blue.tscn" id="4_hm4d0"]
+
+[sub_resource type="Environment" id="Environment_4t30t"]
+background_mode = 1
+background_color = Color(0.2628886, 0.6620919, 0.99999994, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_bxkad"]
+font_size = 48
+font_color = Color(0.69119173, 0.85, 0.34850004, 1)
 
 [node name="Main" type="Node3D"]
-
-[node name="Balloon" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0329324, 0, 0.0969677)
-mesh = ExtResource("1_4t30t")
+script = ExtResource("1_hm4d0")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0329324, 0, 1.5982262)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0329324, 1.3171235, 2.6867466)
+script = ExtResource("2_6jol5")
 
-[node name="SpotLight3D" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.71541226, 0.6987026, 0, -0.6987026, -0.71541226, 4.0284357, 5.2217455, 0)
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.020645428, -0.8394896, -0.5429835, 0.26093632, -0.5288003, 0.8076401, -0.96513516, -0.12501004, 0.22997066, -1.2922394, 5.121672, -1.8986057)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_4t30t")
+
+[node name="balloon" parent="." instance=ExtResource("2_bxkad")]
+
+[node name="balloon2" parent="." instance=ExtResource("2_bxkad")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2821624, 0.44925642, -1.4776781)
+
+[node name="balloon3" parent="." instance=ExtResource("2_bxkad")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0310447, 1.0055202, 0)
+
+[node name="balloon4" parent="." instance=ExtResource("2_bxkad")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.622347, 1.0810122)
+
+[node name="balloon5" parent="." instance=ExtResource("2_bxkad")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.599903, 1.3171235, -5.530916)
+
+[node name="balloon6" parent="." instance=ExtResource("2_bxkad")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0329324, 1.3171235, -1.2362297)
+
+[node name="Score" type="Label" parent="."]
+offset_left = 52.0
+offset_top = 37.0
+offset_right = 118.0
+offset_bottom = 60.0
+text = "Score: 0"
+label_settings = SubResource("LabelSettings_bxkad")
+
+[node name="balloon7" parent="." instance=ExtResource("4_hm4d0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2851834, 2.9721267, 0)
+clicks_to_pop = 6
+score_to_give = 10
